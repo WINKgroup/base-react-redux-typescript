@@ -1,0 +1,44 @@
+* {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.listContainer {
+  border: 1px grey solid;
+  border-radius: 8px;
+}
+
+.listContainer .listElement{
+  padding: 4px 16px;
+}
+
+.listContainer .listElement:not(:last-child) {
+  border-bottom: 1px grey solid;
+}
+
+.listContainer .listElement label {
+  font-size: 12px;
+  color: grey;
+  margin-bottom: 2px;
+}
+
+.listContainer .listElement p {
+  font-size: 18px;
+  margin: 4px 0px;
+}
+
+.listContainer .listElement input {
+  width: 100%;
+  padding: 4px;
+  border-radius: 4px;
+  border: 1px darkgray solid;
+  font-size: 14px;
+  margin: 4px 0px;
+}
+
+button {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px darkgray solid;
+  font-size: 14px;
+  margin: 8px 0px;
+}
