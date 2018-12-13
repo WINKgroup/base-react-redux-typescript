@@ -2,10 +2,16 @@ import { User } from './User.model'
 import { Action } from 'redux-actions'
 import { UserAction } from './user.actions'
 import { takeLatest, put } from 'redux-saga/effects';
+import { EditUserDetailAction } from 'app/components/EditUserDetail/redux/editUserDetail.actions';
 
 export function* saveUser(action: Action<User>) {
-  console.log('save user saga started, make the http call ... ')
+  yield put(EditUserDetailAction.setErrorMessage(''))
   if(!action.payload){
+    return
+  }
+
+  if(!action.payload.email.includes('@')){
+    yield put(EditUserDetailAction.setErrorMessage('invalid email'))
     return
   }
 
@@ -18,7 +24,7 @@ export function* saveUser(action: Action<User>) {
   if (success){
     yield put(UserAction.editUser(action.payload!))
   } else {
-    console.error('REQUEST FAILED')
+    yield put(EditUserDetailAction.setErrorMessage('Connection error'))
   }
 }
 

@@ -11,6 +11,7 @@ export namespace EditUserDetail {
   export interface Props {
     user?: User;
     saveUser?: Function;
+    errorMessage?: string;
   }
 }
 
@@ -20,7 +21,10 @@ interface State {
 }
 
 @connect(
-  (state: RootState): Pick<EditUserDetail.Props, 'user'> => ({ user: state.user }),
+  (state: RootState) => ({
+    user: state.user,
+    errorMessage: state.components.editUser.errorMessage
+  }),
   (dispatch: Dispatch): Pick<EditUserDetail.Props, 'saveUser'> => ({
     saveUser: bindActionCreators(omit(UserAction, 'Type'), dispatch).saveUser
   })
@@ -49,6 +53,7 @@ export class EditUserDetail extends React.Component<EditUserDetail.Props, State>
     return user && (
       <div>
         <h3>Edit user</h3>
+        {this.props.errorMessage && (<label>{this.props.errorMessage}</label>)}
         <div className={style.listContainer}>
           <div className={style.listElement}>
             <label>Email</label>
