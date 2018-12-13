@@ -5,7 +5,7 @@ import { RootState } from 'app/store/state';
 
 export namespace Loader {
     export interface Props {
-        visible: boolean
+        visible?: boolean
     }
 }
 
