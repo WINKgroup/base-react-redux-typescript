@@ -3,6 +3,7 @@ import { Action } from 'redux-actions'
 import { UserAction } from './user.actions'
 import { takeLatest, put } from 'redux-saga/effects';
 import { EditUserDetailAction } from 'app/components/EditUserDetail/redux/editUserDetail.actions';
+import { LoaderAction } from 'app/components/Loader/redux/loader.actions';
 
 export function* saveUser(action: Action<User>) {
   yield put(EditUserDetailAction.setErrorMessage(''))
@@ -15,11 +16,14 @@ export function* saveUser(action: Action<User>) {
     return
   }
 
+  yield put(LoaderAction.setVisbility(true))
   const success = yield new Promise(resolve => {
     setTimeout(() => {
       resolve(Math.random() > 0.7? true: false)
     }, 2000);
   })
+
+  yield put(LoaderAction.setVisbility(false))
 
   if (success){
     yield put(UserAction.editUser(action.payload!))

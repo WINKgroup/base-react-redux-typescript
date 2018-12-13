@@ -1,4 +1,5 @@
 import { User } from './user/User.model';
+import { ComponentsStates } from 'app/store/components/components.state';
 
 export interface RootState {
   components: ComponentsStates;
@@ -6,16 +7,7 @@ export interface RootState {
   router?: any;
 }
 
-export interface ComponentsStates {
-  editUser: ComponentsStates.EditUserDetailsState;
-}
 
 export namespace RootState {
   export type UserState = User;
-}
-
-export namespace ComponentsStates {
-  export type EditUserDetailsState = {
-    errorMessage: string;
-  }
 }
