@@ -28,7 +28,7 @@ export function* saveUser(action: Action<User>) {
 
   if (success) {
     yield put(UserAction.editUser(action.payload!))
-    yield put(MessageAction.setMessage({content: 'blabla', timeout: 0}))
+    yield put(MessageAction.setMessage({content: 'The data has been successfully edited', timeout: 0}))
   } else {
     yield put(EditUserDetailAction.setErrorMessage('Connection error'))
   }
