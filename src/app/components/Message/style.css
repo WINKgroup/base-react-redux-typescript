@@ -1,0 +1,35 @@
+/* The alert message box */
+.alert {
+  background-color: rgba(22, 97, 25, 0.19); 
+  position: absolute;
+  right: 10px;
+
+      -webkit-animation: cssAnimation 0s ease-in 2s forwards;
+    -moz-animation: cssAnimation 0s ease-in 2s forwards;
+    -o-animation: cssAnimation 0s ease-in 2s forwards;
+    animation: cssAnimation 0s ease-in 2s forwards;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+
+}
+
+.alertText {
+  color: black;
+  margin-left: 20px;
+  margin-right: 20px; 
+}
+
+@keyframes cssAnimation {
+  to {
+      width:0;
+      height:0;
+      overflow:hidden;
+  }
+}
+@-webkit-keyframes cssAnimation {
+  to {
+      width:0;
+      height:0;
+      visibility:hidden;
+  }
+}

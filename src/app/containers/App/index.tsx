@@ -3,12 +3,14 @@ import * as style from './style.css';
 import { UserDetail } from 'app/components';
 import { EditUserDetail } from 'app/components';
 import { Loader } from 'app/components/Loader';
+import { Message } from 'app/components/Message';
 
 export class App extends React.Component {
   render() {
     return (
       <div>
         <Loader />
+        <Message/>
         <div className={style.col6}>
           <UserDetail />
         </div>
