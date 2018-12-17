@@ -54,12 +54,22 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "lodash": "^4.17.11",
+    "postcss-flexbugs-fixes": "^4.1.0",
+    "primeicons": "^1.0.0",
+    "primereact": "^2.0.1",
     "react": "^16.5.2",
+    "react-dev-utils": "^6.1.1",
     "react-dom": "^16.5.2",
     "react-redux": "^5.0.7",
     "react-router": "^4.3.1",
+    "react-transition-group": "^2.5.1",
     "redux": "^4.0.1",
     "redux-actions": "^2.6.1",
     "redux-saga": "^0.16.2"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.css$": "<rootDir>/cssTransform.js"
+    }
   }
 }

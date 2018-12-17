@@ -4,7 +4,7 @@ import { bindActionCreators, Dispatch } from 'redux';
 import { RootState } from 'app/store/state';
 import { User } from 'app/store/user/User.model';
 import { omit } from 'app/utils';
-import * as style from './style.css';
+import './style.css';
 import { UserAction } from 'app/store/user/user.actions';
 
 export namespace EditUserDetail {
@@ -54,16 +54,16 @@ export class EditUserDetail extends React.Component<EditUserDetail.Props, State>
       <div>
         <h3>Edit user</h3>
         {this.props.errorMessage && (<label>{this.props.errorMessage}</label>)}
-        <div className={style.listContainer}>
-          <div className={style.listElement}>
+        <div className="listContainer">
+          <div className="listElement">
             <label>Email</label>
             <input placeholder={user.email} onChange={e => this.setState({ email: e.target.value}) }/>
           </div>
-          <div className={style.listElement}>
+          <div className="listElement">
             <label>Name</label>
             <input placeholder={user.name} onChange={e => this.setState({ name: e.target.value}) }/>
           </div>
-          <div className={style.listElement}>
+          <div className="listElement">
             <label>Id</label><p>{user.id}</p>
           </div>
         </div>

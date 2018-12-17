@@ -10,6 +10,7 @@ var outPath = path.join(__dirname, './build');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 var WebpackCleanupPlugin = require('webpack-cleanup-plugin');
+const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent');
 
 module.exports = {
   context: sourcePath,
@@ -48,14 +49,18 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
+          require.resolve('style-loader'),
+          MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
-            query: {
-              modules: true,
-              sourceMap: !isProduction,
+            options:{
+              query: {
+                modules: true,
+                sourceMap: !isProduction,
+                importLoaders: 1,
+                localIdentName: isProduction ? '[hash:base64:5]' : '[local]__[hash:base64:5]'
+              },
               importLoaders: 1,
-              localIdentName: isProduction ? '[hash:base64:5]' : '[local]__[hash:base64:5]'
             }
           },
           {
@@ -63,16 +68,44 @@ module.exports = {
             options: {
               ident: 'postcss',
               plugins: [
-                require('postcss-import')({ addDependencyTo: webpack }),
-                require('postcss-url')(),
+                require('postcss-flexbugs-fixes'),
                 require('postcss-preset-env')({
                   /* use stage 2 features (defaults) */
                   stage: 2,
                 }),
-                require('postcss-reporter')(),
-                require('postcss-browser-reporter')({
-                  disabled: isProduction
-                })
+              ]
+            }
+          }
+        ]
+      },{
+        test: /\.module\.css$/,
+        use: [
+          require.resolve('style-loader'),
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options:{
+              query: {
+                modules: true,
+                sourceMap: !isProduction,
+                importLoaders: 1,
+                localIdentName: isProduction ? '[hash:base64:5]' : '[local]__[hash:base64:5]'
+              },
+              importLoaders: 1,
+              modules: true,
+              getLocalIndent: getCSSModuleLocalIdent
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: [
+                require('postcss-flexbugs-fixes'),
+                require('postcss-preset-env')({
+                  /* use stage 2 features (defaults) */
+                  stage: 2,
+                }),
               ]
             }
           }
